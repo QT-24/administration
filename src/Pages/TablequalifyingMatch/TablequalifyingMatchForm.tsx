@@ -109,7 +109,7 @@ const TablequalifyingMatchForm = ({
             data={teams || []}
             k="team_name"
             name="team1_id"
-            v="team_id"
+            v="member_id"
             handleChange={(e) => {
               formik.handleChange(e);
             }}
@@ -122,7 +122,7 @@ const TablequalifyingMatchForm = ({
             data={teams || []}
             k="team_name"
             name="team2_id"
-            v="team_id"
+            v="member_id"
             handleChange={(e) => {
               formik.handleChange(e);
             }}

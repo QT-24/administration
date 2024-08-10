@@ -62,7 +62,7 @@ const TablequalifyingForm = (
           const { data, status } = res;
           if (status === 200) {
             setTimeout(() => {
-              formik.setFieldValue("listTeams", data.map((m) => m.team_id));
+              formik.setFieldValue("listTeams", data.map((m) => m.member_id));
             }, 1000);
           }
         },
@@ -115,7 +115,7 @@ const TablequalifyingForm = (
                 if (status === 200) return data;
               });
               const tablequalifyingTeamIds = tablequalifyingMembers?.map(
-                (t) => t.team_id,
+                (t) => t.member_id,
               );
               const haveTableSportTeams = haveTableTeams.filter((t) =>
                 tablequalifyingTeamIds?.includes(t.id)
