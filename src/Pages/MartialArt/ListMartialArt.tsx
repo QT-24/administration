@@ -197,7 +197,7 @@ const PageMartialArt = () => {
                                     <i className="fa fa-plus" />
                                     Xuất danh sách chi tiết
                                 </div>
-                                 <div className="btn btn-info" onClick={handleDownload}>
+                                 <div className="btn btn-success" onClick={handleDownload2}>
                                     <i className="fa fa-plus" />
                                     Xuất danh sách tổng hợp
                                 </div>
