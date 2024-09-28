@@ -176,7 +176,7 @@ const PageMartialArt = () => {
             .then(async (res) => {
                 const { data, status } = res;
                 if (status === 200 && data?.length) {
-                    const listContentsHaveMemmbers = data.filter((d) => d.member_ligible > d.min_member_count);
+                    const listContentsHaveMemmbers = data.filter((d) => d.member_ligible >= d.min_member_count);
                     setData(listContentsHaveMemmbers);
                 }
             })
