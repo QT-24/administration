@@ -245,6 +245,7 @@ const UnfullfilledSeed = ({
   seedIndex,
 }: IRenderSeedProps) => {
   const { refreshMartialArtKnockout, knockoutTeams } = useKnockoutContext();
+  const bracketId = seed.id;
 
   const [team, setTeam] = useState<ISeedTeam>({
     team1_id: seed.teams[0]?.id || "",
@@ -268,6 +269,35 @@ const UnfullfilledSeed = ({
   useEffect(() => {
     setLockPick(team.team1_point_win_count != null);
   }, [team.team1_point_win_count]);
+
+  const updateBracketTeams = () => {
+    // setIsUpdatingTeam(false);
+    setLockPick(true);
+    const pairUpdate = {
+      id: bracketId as string,
+      team1_id: team.team1_id,
+      team2_id: undefined,
+    };
+    tablequalifyingKnockoutPairUpdate(pairUpdate)
+      .then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          toast.success(N["success"]);
+        }
+      })
+      .catch((err) => {
+        const {
+          response: { data },
+        } = err;
+        toast.error(data || N["failed"]);
+        console.log({ err });
+      });
+    // .finally(() => callback?.());
+  };
+
+  useEffect(() => {
+    updateBracketTeams();
+  }, [team]);
 
   return (
     <Seed mobileBreakpoint={breakpoint} style={{ fontSize: 14 }}>

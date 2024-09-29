@@ -2,7 +2,7 @@ export interface TTablequalifyingKnockout {
   id: string;
   turn_id: string;
   team1_id: string;
-  team2_id: string;
+  team2_id?: string;
   indexs: number;
   result?: string;
   result_detail?: string;
