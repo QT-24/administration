@@ -53,10 +53,12 @@ const InputSelect = <T,>({
         // defaultValue={defaultValue}
         // value={defaultValue}
         defaultValue={defaultValue}
-        value={value ? value : undefined}
+        // value={value ? value : undefined}
         {...rest}
       >
-        <option value={"null"} selected hidden></option>
+        <option value={defaultValue} selected hidden>
+          {inputData.find(({ v }) => v === defaultValue)?.k}
+        </option>
         {inputData.map(({ k: k, v: v }, i) => (
           <option key={`${v}-${i}`} value={v}>
             {k}

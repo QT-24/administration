@@ -13,13 +13,13 @@ import { useKnockoutContext } from "./context";
 import { MartialArtMatchReportModal } from "./MartialArtForm";
 
 interface ISeedTeam {
-  team1_id: string;
-  team1_name: string;
+  team1_id: string | null;
+  team1_name?: string;
   team1_point_win_count?: string;
 }
 interface ISeedPair extends ISeedTeam {
-  team2_id: string;
-  team2_name: string;
+  team2_id?: string | null;
+  team2_name?: string;
   team2_point_win_count?: string;
 }
 
@@ -107,6 +107,7 @@ const FullSeed = ({
       team1_id: pair.team1_id,
       team2_id: pair.team2_id,
     };
+    console.log({ pairUpdate });
     tablequalifyingKnockoutPairUpdate(pairUpdate)
       .then((res) => {
         const { status } = res;
@@ -115,10 +116,7 @@ const FullSeed = ({
         }
       })
       .catch((err) => {
-        const {
-          response: { data },
-        } = err;
-        toast.error(data || N["failed"]);
+        toast.error(err?.data ? err.data : N["failed"]);
         console.log({ err });
       });
     // .finally(() => callback?.());
@@ -139,9 +137,19 @@ const FullSeed = ({
               data={knockoutTeams}
               k="member_map_org"
               v="id"
+              // placeHolder={pair.team1_name || "--Trống--"}
+              value={pair.team1_id}
               name="team1"
               handleChange={(e) => {
                 const teamId = e.target.value;
+                if (!teamId) {
+                  setPair((prev) => ({
+                    ...prev,
+                    team1_id: null,
+                    team1_name: "",
+                  }));
+                  return;
+                }
                 const team = knockoutTeams.find(({ id }) => id === teamId);
                 if (team) {
                   setPair((prev) => ({
@@ -160,7 +168,7 @@ const FullSeed = ({
                       ? pair.team1_point_win_count
                       : ""
                   }`
-                : "CHƯA CÓ"}
+                : "--Trống--"}
             </SeedTeam>
           )}
           <div className="p-2 flex gap-2 justify-center">
@@ -209,8 +217,18 @@ const FullSeed = ({
               k="member_map_org"
               v="id"
               name="team2"
+              value={pair.team2_id}
+              // placeHolder={pair.team2_name || "--Trống--"}
               handleChange={(e) => {
                 const teamId = e.target.value;
+                if (!teamId) {
+                  setPair((prev) => ({
+                    ...prev,
+                    team2_id: null,
+                    team2_name: "",
+                  }));
+                  return;
+                }
                 const team = knockoutTeams.find(({ id }) => id === teamId);
                 if (team) {
                   setPair((prev) => ({
@@ -229,7 +247,7 @@ const FullSeed = ({
                       ? pair.team2_point_win_count
                       : ""
                   }`
-                : "CHƯA CÓ"}
+                : "--Trống--"}
             </SeedTeam>
           )}
         </div>
@@ -345,19 +363,21 @@ const UnfullfilledSeed = ({
         <SeedTeam className="flex justify-center bracket-team">
           Được vào thẳng
         </SeedTeam>
-        <SeedTeam className="bracket-team">---</SeedTeam>
+        <SeedTeam className="bracket-team">--Trống--</SeedTeam>
       </SeedItem>
     </Seed>
   );
 };
 
 const CustomSeed = (props: IRenderSeedProps) => {
-  const { seed } = props;
-  return seed?.direct ? (
-    <UnfullfilledSeed {...props} />
-  ) : (
-    <FullSeed {...props} />
-  );
+  // const { seed } = props;
+  // return seed?.direct ? (
+  //   <UnfullfilledSeed {...props} />
+  // ) : (
+  //   <FullSeed {...props} />
+  // );
+
+  return <FullSeed {...props} />;
 };
 
 export { CustomSeed };
