@@ -118,8 +118,8 @@ const FullSeed = ({
       .catch((err) => {
         toast.error(err?.data ? err.data : N["failed"]);
         console.log({ err });
-      });
-    // .finally(() => callback?.());
+      })
+      .finally(() => refreshKnockoutBrackets());
   };
 
   const enableSelectTeam = () => {
