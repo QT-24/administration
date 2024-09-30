@@ -244,7 +244,8 @@ const UnfullfilledSeed = ({
   roundIndex,
   seedIndex,
 }: IRenderSeedProps) => {
-  const { refreshMartialArtKnockout, knockoutTeams } = useKnockoutContext();
+  const { fetchTablequalifyingKnockout, sportId, contentId, knockoutTeams } =
+    useKnockoutContext();
   const bracketId = seed.id;
 
   const [team, setTeam] = useState<ISeedTeam>({
@@ -255,7 +256,8 @@ const UnfullfilledSeed = ({
 
   const [lockPick, setLockPick] = useState(
     // seed.teams[0]?.id && seed.teams[1]?.id,
-    team.team1_point_win_count != null
+    // team.team1_point_win_count != null
+    false
   );
 
   useEffect(() => {
@@ -266,23 +268,25 @@ const UnfullfilledSeed = ({
     });
   }, [seed]);
 
-  useEffect(() => {
-    setLockPick(team.team1_point_win_count != null);
-  }, [team.team1_point_win_count]);
+  const refreshKnockoutBrackets = useCallback(() => {
+    console.log("reload brackets");
+    fetchTablequalifyingKnockout(sportId, contentId);
+  }, [sportId, fetchTablequalifyingKnockout, contentId]);
 
-  const updateBracketTeams = () => {
+  const updateBracketTeams = (team1_id = null, team2_id = null) => {
     // setIsUpdatingTeam(false);
-    setLockPick(true);
+    // setLockPick(true);
     const pairUpdate = {
       id: bracketId as string,
-      team1_id: team.team1_id,
-      team2_id: undefined,
+      team1_id: team1_id,
+      team2_id: team2_id,
     };
     tablequalifyingKnockoutPairUpdate(pairUpdate)
       .then((res) => {
         const { status } = res;
         if (status === 200) {
           toast.success(N["success"]);
+          refreshKnockoutBrackets();
         }
       })
       .catch((err) => {
@@ -295,9 +299,13 @@ const UnfullfilledSeed = ({
     // .finally(() => callback?.());
   };
 
-  useEffect(() => {
-    updateBracketTeams();
-  }, [team]);
+  const updateTeam1Id = (teamId) => {
+    updateBracketTeams(teamId);
+  };
+
+  // useEffect(() => {
+  //   updateBracketTeams();
+  // }, [team]);
 
   return (
     <Seed mobileBreakpoint={breakpoint} style={{ fontSize: 14 }}>
@@ -319,6 +327,7 @@ const UnfullfilledSeed = ({
                   team1_id: team.id,
                   team1_name: team.member_map_org || "",
                 }));
+                updateTeam1Id(team.id);
               }
             }}
           />
