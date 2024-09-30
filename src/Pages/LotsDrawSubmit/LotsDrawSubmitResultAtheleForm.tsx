@@ -99,7 +99,10 @@ const checkValidValue = (data: any) => {
             (element[`content1_record_value`] &&
                 element[`content1_record_value`].toString().split(":").length > 1 &&
                 element[`content1_record_value`] &&
-                element[`content1_record_value`].toString().split(":")[1].split("").length > 1)
+                element[`content1_record_value`].toString().split(":")[1].split("").length > 1) || (element[`content1_record_value`] &&
+                element[`content1_record_value`].toString().split(".").length > 1 &&
+                element[`content1_record_value`] &&
+                element[`content1_record_value`].toString().split(".")[1].split("").length > 0)
         ) {
         } else {
             if (element[`content1_record_value`]) {
@@ -257,7 +260,11 @@ const LotsDrawSubmitResultAllForm = ({ sportId, content_id, onCancel }: ILotsDra
                                             original[`${valueField}_record_value`].toString().split(":").length > 1 &&
                                             original[`${valueField}_record_value`] &&
                                             original[`${valueField}_record_value`].toString().split(":")[1].split("")
-                                                .length > 1)
+                                                .length > 1) ||  (original[`${valueField}_record_value`] &&
+                                            original[`${valueField}_record_value`].toString().split(".").length > 1 &&
+                                            original[`${valueField}_record_value`] &&
+                                            original[`${valueField}_record_value`].toString().split(".")[1].split("")
+                                                .length > 0)
                                     ) {
                                         dataResult = <div>{value}</div>;
                                     } else {
