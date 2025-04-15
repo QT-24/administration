@@ -74,19 +74,17 @@ const TablequalifyingForm = ({
   useEffect(() => {
     console.log({ id: initTablequalifying?.id });
     if (initTablequalifying?.id) {
-      const id = initTablequalifying?.id;
-      tablequalifyingMembersGet(id).then((res) => {
-        const { data, status } = res;
-        console.log({ data });
-        if (status === 200) {
-          setTimeout(() => {
-            formik.setFieldValue(
-              "listTeams",
-              data.map((m) => m.member_id)
-            );
-          }, 1000);
-        }
-      });
+      const { id } = initTablequalifying;
+      tablequalifyingMembersGet(id).then(
+        (res) => {
+          const { data, status } = res;
+          if (status === 200) {
+            setTimeout(() => {
+              formik.setFieldValue("listTeams", data.map((m) => m.team_id));
+            }, 1000);
+          }
+        },
+      );
     }
   }, [initTablequalifying?.id]);
 
@@ -150,7 +148,7 @@ const TablequalifyingForm = ({
               });
               console.log({ tablequalifyingMembers });
               const tablequalifyingTeamIds = tablequalifyingMembers?.map(
-                (t) => t.member_id
+                (t) => t.team_id,
               );
               const haveTableSportTeams = haveTableTeams.filter((t) =>
                 tablequalifyingTeamIds?.includes(t.id)
