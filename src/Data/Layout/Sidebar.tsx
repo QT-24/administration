@@ -1,13 +1,15 @@
 import { sportFilterByUnitType } from "../../store/_utils";
 import { useSportStore } from "../../store/sport";
 import { DUnitType } from "../../type/enum";
+import { getUserRoleId } from "../../shared/localStorage/user";
 
 export const useMenuList = () => {
     const { sports } = useSportStore();
+    const isAdmin = getUserRoleId() === 0; // Role 0 is admin
     const menuList = [
         {
             Items: [
-                {
+                ...(isAdmin ? [{
                     title: "Quản trị",
                     icon: "fa fa-user",
                     lanClass: "lan-4",
@@ -25,7 +27,7 @@ export const useMenuList = () => {
                             // path: "/user/list",
                         },
                     ],
-                },
+                }] : []),
                 {
                     title: "Danh mục môn thi",
                     icon: "fa fa-th-list",
