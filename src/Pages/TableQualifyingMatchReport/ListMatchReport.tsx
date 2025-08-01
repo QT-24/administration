@@ -169,7 +169,7 @@ const PageTablequalifyingMatchReport = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Nhập kết quả thi đấu"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Nhập kết quả thi đấu"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

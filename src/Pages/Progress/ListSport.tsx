@@ -262,7 +262,7 @@ const PageProgress = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Tiến độ thi đấu"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Tiến độ thi đấu"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

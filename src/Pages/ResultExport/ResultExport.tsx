@@ -239,7 +239,7 @@ const ListComboBox = () => {
 const PageResultExport = () => {
     return (
         <div className="page-body">
-            <Breadcrumbs mainTitle={"Kết quả xếp hạng"} parent={"HTTQ2024"} />
+            <Breadcrumbs mainTitle={"Kết quả xếp hạng"} parent={"Hội thao TDTT"} />
             <Container fluid>
                 <Row>
                     <Col sm="15">

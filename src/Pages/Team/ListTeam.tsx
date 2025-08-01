@@ -222,7 +222,7 @@ const PageTeam = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Danh sách đội thi đấu"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Danh sách đội thi đấu"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

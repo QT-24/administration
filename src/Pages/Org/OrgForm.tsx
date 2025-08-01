@@ -17,7 +17,7 @@ interface IOrgForm {
 interface IOrgModal extends IOrgForm {}
 
 const OrgForm = ({ org: initOrg, onSubmit, onCancel }: IOrgForm) => {
-  const org = initOrg ? initOrg : { name: "", group_id: null };
+  const org = initOrg ? initOrg : { name: "", group_id: null, code: "" };
   const { groups } = useGroupStore();
   const { t } = useTranslation();
 
@@ -42,6 +42,16 @@ const OrgForm = ({ org: initOrg, onSubmit, onCancel }: IOrgForm) => {
             type="text"
             value={formik.values.name}
             onChange={formik.handleChange}
+          />
+        </Col>
+        <Col md="12">
+          <Label>Mã đơn vị</Label>
+          <Input
+            id="code"
+            type="text"
+            value={formik.values.code}
+            onChange={formik.handleChange}
+            placeholder="Nhập mã đơn vị"
           />
         </Col>
         {groups?.length ? (

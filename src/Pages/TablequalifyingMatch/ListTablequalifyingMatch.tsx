@@ -407,7 +407,7 @@ const PageTablequalifyingMatch = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Lịch thi đấu"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Lịch thi đấu"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

@@ -296,7 +296,7 @@ const PageTeammember = () => {
 
     return (
         <div className="page-body">
-            <Breadcrumbs mainTitle={"Danh sách vận động viên"} parent={"HTTQ2024"} />
+            <Breadcrumbs mainTitle={"Danh sách vận động viên"} parent={"Hội thao TDTT"} />
             <Container fluid>
                 <Row>
                     <Col sm="12">
