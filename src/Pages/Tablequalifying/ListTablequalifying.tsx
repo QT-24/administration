@@ -294,7 +294,7 @@ const PageTablequalifying = () => {
 
     return (
         <div className="page-body">
-            <Breadcrumbs mainTitle={`Vòng bảng ${selectedSport?.name}`} parent={"HTTQ2024"} />
+            <Breadcrumbs mainTitle={`Vòng bảng ${selectedSport?.name}`} parent={"Hội thao TDTT"} />
             <Container fluid>
                 <Row>
                     <Col sm="12">

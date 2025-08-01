@@ -157,7 +157,7 @@ const ListOrg = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Danh mục đơn vị"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Danh mục đơn vị"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

@@ -28,7 +28,7 @@ const MartialArtKnockout = () => {
 
     return (
         <div className="page-body">
-            <Breadcrumbs mainTitle={"Võ chiến đấu tay không"} parent={"HTTQ2024"} />
+            <Breadcrumbs mainTitle={"Võ chiến đấu tay không"} parent={"Hội thao TDTT"} />
             <Container fluid>
                 <Row>
                     <Col sm="12">

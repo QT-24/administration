@@ -775,7 +775,7 @@ const PageLotsDraw = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Thi đấu bốc thăm"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Thi đấu bốc thăm"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

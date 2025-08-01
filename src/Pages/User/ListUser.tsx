@@ -169,7 +169,7 @@ const PageUser = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Nguời dùng"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Nguời dùng"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

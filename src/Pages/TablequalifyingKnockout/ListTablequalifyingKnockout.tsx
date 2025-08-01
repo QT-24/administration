@@ -72,7 +72,7 @@ const PageTablequalifyingKnockout = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Thi đấu vòng loại"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Thi đấu vòng loại"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">

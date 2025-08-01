@@ -135,7 +135,7 @@ const PageLotsDraw1 = () => {
 
     return (
         <div className="page-body">
-            <Breadcrumbs mainTitle={`Thi đấu môn ${sportName}`} parent={"HTTQ2024"} />
+            <Breadcrumbs mainTitle={`Thi đấu môn ${sportName}`} parent={"Hội thao TDTT"} />
 
             <NavBar></NavBar>
         </div>

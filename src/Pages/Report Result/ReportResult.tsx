@@ -144,7 +144,7 @@ const PageReportResult = () => {
 
     return (
         <div className="page-body">
-            <Breadcrumbs mainTitle={"Xuất biên bản thi đấu"} parent={"HTTQ2024"} />
+            <Breadcrumbs mainTitle={"Xuất biên bản thi đấu"} parent={"Hội thao TDTT"} />
             <Container fluid>
                 <Row>
                     <Col sm="12">

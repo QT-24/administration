@@ -1,13 +1,15 @@
 import { sportFilterByUnitType } from "../../store/_utils";
 import { useSportStore } from "../../store/sport";
 import { DUnitType } from "../../type/enum";
+import { getUserRoleId } from "../../shared/localStorage/user";
 
 export const useMenuList = () => {
     const { sports } = useSportStore();
+    const isAdmin = getUserRoleId() === 0; // Role 0 is admin
     const menuList = [
         {
             Items: [
-                {
+                ...(isAdmin ? [{
                     title: "Quản trị",
                     icon: "fa fa-user",
                     lanClass: "lan-4",
@@ -17,15 +19,15 @@ export const useMenuList = () => {
                             type: "sub",
                             lanClass: "lan-3",
                             path: "/user/list",
-                        },
-                        {
-                            title: "Phân quyền",
-                            type: "sub",
-                            lanClass: "lan-3",
-                            // path: "/user/list",
-                        },
+                        }
+                        // {
+                        //     title: "Phân quyền",
+                        //     type: "sub",
+                        //     lanClass: "lan-3",
+                        //     // path: "/user/list",
+                        // },
                     ],
-                },
+                }] : []),
                 {
                     title: "Danh mục môn thi",
                     icon: "fa fa-th-list",
@@ -231,7 +233,7 @@ export const useMenuList = () => {
                     ],
                 },
                 {
-                    title: "Báo cáo ",
+                    title: "Thống kê",
                     icon: "fa fa-file",
                     lanClass: "lan-4",
                     //path: "/teammember/list",
@@ -239,7 +241,7 @@ export const useMenuList = () => {
                     children: [
                         {
                             path: "/export/org/listathele",
-                            title: "Đội thi",
+                            title: "VĐV theo đội thi",
                             type: "link",
                             lanClass: "lan-3",
                         },
@@ -257,19 +259,19 @@ export const useMenuList = () => {
                         // },
                         {
                             path: "/export/sport/type3",
-                            title: "Mẫu VĐV 3 ",
+                            title: "VĐV theo môn thi",
                             type: "link",
                             lanClass: "lan-3",
                         },
                     ],
                 },
-                {
-                    title: "Giới thiệu",
-                    icon: "fa fa-info",
-                    lanClass: "lan-4",
-                    //path: "/teammember/list",
-                    type: "link",
-                },
+                // {
+                //     title: "Giới thiệu",
+                //     icon: "fa fa-info",
+                //     lanClass: "lan-4",
+                //     //path: "/teammember/list",
+                //     type: "link",
+                // },
                 {
                     path: "/resultexport",
                     title: "Bảng xếp hạng",

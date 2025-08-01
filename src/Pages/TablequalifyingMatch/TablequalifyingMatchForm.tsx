@@ -33,15 +33,31 @@ const TablequalifyingMatchForm = ({
   onSubmit,
   onCancel,
 }: ITablequalifyingMatchForm) => {
+  const getValidDate = (dateStr: string | undefined): string => {
+    if (!dateStr) return new Date().toISOString();
+    try {
+      const date = new Date(dateStr);
+      if (isNaN(date.getTime())) {
+        return new Date().toISOString();
+      }
+      return date.toISOString();
+    } catch (e) {
+      return new Date().toISOString();
+    }
+  };
+
   const tablequalifyingMatch: Partial<TTablequalifyingMatch> =
     initTablequalifyingMatch
-      ? initTablequalifyingMatch
+      ? {
+          ...initTablequalifyingMatch,
+          match_day: getValidDate(initTablequalifyingMatch.match_day),
+        }
       : {
           table_id: "",
           team1_id: "",
           team2_id: "",
           indexs: 0,
-          match_day: new Date(),
+          match_day: new Date().toISOString(),
           match_hour: "",
           match_time: DTime[0].k,
           // match_location_chid: "",
@@ -142,13 +158,14 @@ const TablequalifyingMatchForm = ({
           />
         </Col>
         <Col md="12">
-          <Label for="indexs" check>
+          <Label for="match_location" check>
             {N["match_location"]}
           </Label>
           <Input
             name="match_location"
-            disabled
-            value={selectedSport?.sport_location}
+            value={formik.values.match_location || ""}
+            onChange={formik.handleChange}
+            placeholder={t("enter_match_location")}
           />
         </Col>
         {/* <Col md="12">
@@ -169,11 +186,14 @@ const TablequalifyingMatchForm = ({
           <ReactDatePicker
             className="form-control"
             name="match_day"
-            selected={new Date(formik.values.match_day || new Date())}
-            // value={formik.values.match_day}
-            onChange={(date) => formik.setFieldValue("match_day", date)}
-            // locale={"vi"}
-            // dateFormat={"dd/MM/yyyy"}
+            selected={formik.values.match_day ? new Date(formik.values.match_day) : new Date()}
+            onChange={(date) => {
+              if (date && !isNaN(date.getTime())) {
+                formik.setFieldValue("match_day", date.toISOString());
+              }
+            }}
+            dateFormat="dd/MM/yyyy"
+            minDate={new Date()}
           />
         </Col>
         <Col md="12">

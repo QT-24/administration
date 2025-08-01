@@ -182,7 +182,7 @@ const PageSport = () => {
 
   return (
     <div className="page-body">
-      <Breadcrumbs mainTitle={"Môn thi"} parent={"HTTQ2024"} />
+      <Breadcrumbs mainTitle={"Môn thi"} parent={"Hội thao TDTT"} />
       <Container fluid>
         <Row>
           <Col sm="12">
